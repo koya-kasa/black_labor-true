@@ -1,0 +1,27 @@
+h1 ユーザーの確認
+
+= form_with model: [:admin, @user], local: true do |f|
+    table.table.table-hover
+        tbody
+            tr
+                th= User.human_attribute_name(:name)
+                td= @user.name
+                = f.hidden_field :name
+            tr
+                th= User.human_attribute_name(:profile)
+                td= simple_format(@user.profile)
+                = f.hidden_field :profile
+            tr
+                th= User.human_attribute_name(:email)
+                td= @user.email
+                = f.hidden_field :email
+            tr
+                th= User.human_attribute_name(:password)
+                td= @user.password
+                = f.hidden_field :password
+            tr
+                th= User.human_attribute_name(:password_confirmation)
+                td= @user.password_confirmation
+                = f.hidden_field :password_confirmation
+    = f.submit '戻る', name: 'back', class: 'btn btn-secondary mr-3'
+    = f.submit '登録', class: 'btn btn-primary'
