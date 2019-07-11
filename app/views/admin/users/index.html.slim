@@ -1,0 +1,40 @@
+h1 ユーザー一覧
+
+= search_form_for @q, url: admin_users_path, class: 'mb-5' do |f|
+    .form-group.row
+        = f.label :name_cont, '名前', class: 'col-sm-2 col-form-label'
+        .col-sm-10
+            = f.search_field :name_cont, class: 'form-control'
+    .form-group.row
+        = f.label :email_cont, 'メールアドレス', class: 'col-sm-2 col-form-label'
+        .col-sm-10
+            = f.search_field :email_cont, class: 'form-control'
+    .form-group
+        = f.submit '検索', class: 'btn btn-outline-primary'
+
+.md-3
+    = paginate @users
+    = page_entries_info @users
+    
+table.table.table-hover
+    thead.thead-default
+        tr
+            th= User.human_attribute_name(:id)
+            th= User.human_attribute_name(:name)
+            th= User.human_attribute_name(:email)
+            th= User.human_attribute_name(:admin)
+            th= User.human_attribute_name(:created_at)
+            th= User.human_attribute_name(:updated_at)
+            th
+    tbody
+        - @users.each do |user|
+            tr
+                td = user.id
+                td = link_to user.name, [:admin, user]
+                td = user.email
+                td = user.admin? ? 'あり' : 'なし'
+                td = user.created_at
+                td = user.updated_at
+                td
+                    = link_to '削除', [:admin, user], method: :delete, data: {confirm: "タスク「#{user.name}」を削除します。よろしいですか？"}, class: 'btn btn-danger'
+                    
