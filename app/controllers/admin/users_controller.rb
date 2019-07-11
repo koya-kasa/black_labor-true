@@ -77,4 +77,3 @@ class Admin::UsersController < ApplicationController
     redirect_to login_path, notice: '権限がありません' unless @current_user.id == params[:id].to_i
   end
 end
-  
