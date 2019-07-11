@@ -1,0 +1,16 @@
+h1 ユーザー編集
+
+- if @user.errors.present?
+    ul#error_explanation
+        - @user.errors.full_messages.each do |message|
+            li= message
+
+= form_with model: [:admin, @user], local: true do |f|
+    .form-group
+        = f.label :name, '名前'
+        = f.text_field :name, class: 'form-control'
+    .form-group
+        = f.label :profile, 'プロフィール'
+        = f.text_area :profile, class: 'form-control'
+    = f.submit '決定', class: 'btn btn-primary mr-3'
+    = f.submit '戻る', name: 'back', class: 'btn btn-secondary'
