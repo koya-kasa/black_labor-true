@@ -1,0 +1,14 @@
+h1 ユーザーの詳細
+
+table.table.table-hover
+    tbody
+        tr
+            th= User.human_attribute_name(:name)
+            td= @user.name
+        tr
+            th= User.human_attribute_name(:profile)
+            td= @user.profile
+- if @current_user.id == @user.id
+    = link_to '編集', edit_admin_user_path, class: 'btn btn-primary mr-3'
+- if @current_user.admin?
+    = link_to '削除', [:admin, @user], method: :delete, data: {confirm: "タスク「#{@user.name}」を削除します。よろしいですか？"}, class: 'btn btn-danger'
