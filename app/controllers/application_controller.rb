@@ -13,6 +13,6 @@ class ApplicationController < ActionController::Base
     end
     
     def already_login
-        redirect_to admin_user_path(@current_user), notice: 'ログイン済みです' if current_user
+        redirect_to user_path(@current_user), notice: 'ログイン済みです' if current_user
     end
 end
