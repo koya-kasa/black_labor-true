@@ -130,6 +130,7 @@ ja:
       exclusion: は予約されています
       greater_than: は%{count}より大きい値にしてください
       greater_than_or_equal_to: は%{count}以上の値にしてください
+      greater_than_or_equal_to: は%{count}以上の値に���てください
       inclusion: は一覧にありません
       invalid: は不正な値です
       less_than: は%{count}より小さい値にしてください
@@ -162,6 +163,7 @@ ja:
       format:
         delimiter: ","
         format: "%u%n"
+        format: "%n%u"
         precision: 0
         separator: "."
         significant: false
