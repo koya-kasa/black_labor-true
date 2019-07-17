@@ -4,18 +4,24 @@ class UsersController < ApplicationController
   before_action :already_login, only: [:new, :confirm_new, :create]
   before_action :forbid_user, only: [:edit, :update]
   
+  def index
+    @q = User.ransack(params[:q])
+    @users = @q.result(distinct: true).page(params[:page])
+  end
+  
+  def show
+    @user = User.find(params[:id])
+  end
+  
   def new
     @user = User.new
   end
 
   def create
     @user = User.new(user_params)
-    
-    if params[:back].present?
-      render :new
-      return
-    end
-    
+
+    return render :new if params[:back].present?
+
     if @user.save
       session[:user_id] = @user.id
       redirect_to user_url(@user), notice: "ユーザー「#{@user.name}」を登録しました。"
@@ -30,11 +36,8 @@ class UsersController < ApplicationController
   
   def update
     @user = User.find(params[:id])
-    
-    if params[:back].present?
-      render :show
-      return
-    end
+
+    return render :show if params[:back].present?
 
     if @user.update(user_params)
       redirect_to @user, notice: "ユーザー「#{@user.name}」の情報を更新しました。"
@@ -49,15 +52,6 @@ class UsersController < ApplicationController
     redirect_to users_path, notice: "ユーザー「#{@user.name}」の情報を削除しました。"
   end
 
-  def show
-    @user = User.find(params[:id])
-  end
-
-  def index
-    @q = User.ransack(params[:q])
-    @users = @q.result(distinct: true).page(params[:page])
-  end
-  
   def confirm_new
     @user = User.new(user_params)
     render :new unless @user.valid?
