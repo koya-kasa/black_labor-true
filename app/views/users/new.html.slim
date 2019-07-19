@@ -17,11 +17,6 @@ h1 ユーザー登録
         = f.label :email, 'メールアドレス'
         f.span.required 必須
         = f.text_field :email, class: 'form-control'
-    /member
-        .form-check
-            = f.label :admin, class: 'form-check-label' do
-                = f.check_box :admin, class: 'form-check-input'
-                | 管理者権限
     p.attention パスワードは4以上15文字以内でお願いします
     .form-group
         = f.label :password, 'パスワード'
