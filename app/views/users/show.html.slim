@@ -9,6 +9,7 @@ table.table.table-hover
             th= User.human_attribute_name(:profile)
             td= @user.profile
 - if @current_user.id == @user.id
+    = link_to '新規投稿', new_work_experience_path, class: 'btn btn-primary mr-3'
     = link_to '編集', edit_user_path, class: 'btn btn-primary mr-3'
 - if @current_user.admin?
     = link_to '削除', @user, method: :delete, data: {confirm: "タスク「#{@user.name}」を削除します。よろしいですか？"}, class: 'btn btn-danger'
