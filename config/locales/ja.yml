@@ -1,3 +1,4 @@
+---
 ja:
   activerecord:
     errors:
@@ -6,6 +7,18 @@ ja:
         restrict_dependent_destroy:
           has_one: "%{record}が存在しているので削除できません"
           has_many: "%{record}が存在しているので削除できません"
+  models: 
+    user: ユーザー
+  attributes: 
+    user:
+      name: 名前
+      email: メールアドレス
+      profile: プロフィール
+      admin: 管理者権限
+      password: パスワード
+      password_confirmation: パスワード（確認）
+      created_at: 登録日時
+      updated_at: 更新日時
   date:
     abbr_day_names:
     - 日
@@ -116,6 +129,7 @@ ja:
       even: は偶数にしてください
       exclusion: は予約されています
       greater_than: は%{count}より大きい値にしてください
+      greater_than_or_equal_to: は%{count}以上の値にしてください
       greater_than_or_equal_to: は%{count}以上の値に���てください
       inclusion: は一覧にありません
       invalid: は不正な値です
@@ -148,6 +162,7 @@ ja:
     currency:
       format:
         delimiter: ","
+        format: "%u%n"
         format: "%n%u"
         precision: 0
         separator: "."

@@ -1,0 +1,16 @@
+// Place all the styles related to the Admin::Users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.required {
+    margin-left: .3em;
+    color: #f33;
+    font-size: .9em;
+    padding: 3px;
+    background-color: #fee;
+    font-weight: bold;
+}
+
+.attention {
+    color: red;
+}
