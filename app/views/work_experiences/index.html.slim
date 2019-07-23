@@ -1,2 +1,7 @@
-h1 WorkExperiences#index
-p Find me in app/views/work_experiences/index.html.slim
+h1 記事一覧
+
+table.table.table-hover
+    tbody
+        - @work_experiences.each do |work_experience|
+            tr
+                td = link_to work_experience.title, work_experience
