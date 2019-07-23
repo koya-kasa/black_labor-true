@@ -9,6 +9,7 @@ ja:
           has_many: "%{record}が存在しているので削除できません"
   models: 
     user: ユーザー
+    work_experience: 記事
   attributes: 
     user:
       name: 名前
@@ -17,6 +18,12 @@ ja:
       admin: 管理者権限
       password: パスワード
       password_confirmation: パスワード（確認）
+      created_at: 登録日時
+      updated_at: 更新日時
+    work_experience:
+      title: タイトル
+      body: 本文
+      user_id: ユーザーのid
       created_at: 登録日時
       updated_at: 更新日時
   date:
