@@ -10,4 +10,5 @@ class User < ApplicationRecord
     validates :profile, length: { maximum: 1000 }
     validates :password, length: { in: 4..15 }, presence: true
     
+    has_many :work_experience
 end
