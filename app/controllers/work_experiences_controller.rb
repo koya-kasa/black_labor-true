@@ -1,5 +1,4 @@
 class WorkExperiencesController < ApplicationController
-  #途中
   skip_before_action :login_required, only: [:index, :show]
   
   def index
@@ -24,8 +23,8 @@ class WorkExperiencesController < ApplicationController
     end
   end
 
-  def edit
-  end
+  #def edit
+  #end
   
   private
   
