@@ -1,3 +1,5 @@
 h1 記事一覧
 
-= render partial: 'post'
+table.table.table-hover
+    tbody
+        = render partial: 'work_experience', collection: @work_experiences
