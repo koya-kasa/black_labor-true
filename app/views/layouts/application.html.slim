@@ -11,6 +11,7 @@ html
     .app-title.navbar.navbar-expand-md.navbar-light.bg-light
       .navbar-brand BlackLabor
       ul.navbar-nav.ml-auto
+        li.nav-item= link_to '記事一覧', work_experiences_path, class: "nav-link"
         - if current_user
           - if current_user.admin?
             li.nav-item= link_to 'ユーザー一覧', users_path, class: "nav-link"
