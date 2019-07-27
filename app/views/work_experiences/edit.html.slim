@@ -1,2 +1,15 @@
-h1 WorkExperiences#edit
-p Find me in app/views/work_experiences/edit.html.slim
+h1 記事の編集
+
+- if @work_experience.errors.present?
+    ul#error_explanation
+        - @work_experience.errors.full_messages.each do |message|
+            li= message
+
+= form_with model: @work_experience, local: true do |f|
+    .form-group
+        = f.label :title
+        = f.text_field :title, class: 'form-control', id: 'we_title'
+    .form-group
+        = f.label :body
+        = f.text_area :body, class: 'form-control', id: 'we_body', size: '30x10'
+    = f.submit '改稿', class: 'btn btn-primary'
