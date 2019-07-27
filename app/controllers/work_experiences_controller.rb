@@ -23,8 +23,19 @@ class WorkExperiencesController < ApplicationController
     end
   end
 
-  #def edit
-  #end
+  def edit
+    @work_experience = current_user.work_experiences.find(params[:id])
+  end
+  
+  def update
+    @work_experience = current_user.work_experiences.find(params[:id])
+    
+    if @work_experience.update(we_params)
+      redirect_to work_experience_path, notice: "記事「#{@work_experience.title}」を更新しました。"
+    else
+      render :edit
+    end
+  end
   
   private
   
