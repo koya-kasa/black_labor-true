@@ -8,8 +8,22 @@ table.table.table-hover
         tr
             th= User.human_attribute_name(:profile)
             td= @user.profile
+
 - if @current_user.id == @user.id
-    = link_to '新規投稿', new_work_experience_path, class: 'btn btn-primary mr-3'
-    = link_to '編集', edit_user_path, class: 'btn btn-primary mr-3'
+    = link_to '編集', edit_user_path, class: 'btn btn-primary mr-3 mb-5'
 - if @current_user.admin?
-    = link_to '削除', @user, method: :delete, data: {confirm: "タスク「#{@user.name}」を削除します。よろしいですか？"}, class: 'btn btn-danger'
+    = link_to '削除', @user, method: :delete, data: {confirm: "タスク「#{@user.name}」を削除します。よろしいですか？"}, class: 'btn btn-danger mb-5'
+
+- if @current_user.id == @user.id
+    h3 新規投稿
+
+    = link_to '新規投稿', new_work_experience_path, class: 'btn btn-primary mr-3 mb-5'
+
+h3 投稿した記事
+
+- if @user.work_experiences.count == 0
+    p 投稿した記事はありません
+
+table.table.table-hover
+    tbody
+        = render partial: 'work_experience', collection: @user.work_experiences
