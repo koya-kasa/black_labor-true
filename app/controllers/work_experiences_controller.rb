@@ -1,6 +1,6 @@
 class WorkExperiencesController < ApplicationController
   skip_before_action :login_required, only: [:index, :show]
-  before_action :pick_up_we, only: [:edit, :update]
+  before_action :set_work_experience, only: [:edit, :update]
   
   def index
     @work_experiences = WorkExperience.all
@@ -41,7 +41,7 @@ class WorkExperiencesController < ApplicationController
     params.require(:work_experience).permit(:title, :body)
   end
 
-  def pick_up_we
+  def set_work_experience
     @work_experience = current_user.work_experiences.find(params[:id])
   end
 end
