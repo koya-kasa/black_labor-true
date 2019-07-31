@@ -1,6 +1,6 @@
 class WorkExperiencesController < ApplicationController
   skip_before_action :login_required, only: [:index, :show]
-  before_action :set_work_experience, only: [:edit, :update]
+  before_action :set_work_experience, only: [:edit, :update, :destroy]
   
   def index
     @work_experiences = WorkExperience.all
@@ -33,6 +33,11 @@ class WorkExperiencesController < ApplicationController
     else
       render :edit
     end
+  end
+  
+  def destroy
+    @work_experience.destroy
+    redirect_to user_path(@current_user), notice: "記事「#{@work_experience.title}」を削除しました。"
   end
   
   private
