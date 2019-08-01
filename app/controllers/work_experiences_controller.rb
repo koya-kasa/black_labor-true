@@ -1,5 +1,6 @@
 class WorkExperiencesController < ApplicationController
   skip_before_action :login_required, only: [:index, :show]
+  before_action :forbid_work_experience_user, only: [:edit, :update, :destroy]
   before_action :set_work_experience, only: [:edit, :update, :destroy]
   
   def index
@@ -48,5 +49,9 @@ class WorkExperiencesController < ApplicationController
 
   def set_work_experience
     @work_experience = current_user.work_experiences.find(params[:id])
+  end
+  
+  def forbid_work_experience_user
+    redirect_to user_url(@current_user), notice: '権限がありません' unless @current_user.id == params[:id].to_i
   end
 end
