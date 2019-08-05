@@ -1,5 +1,7 @@
 h1 #{@work_experience.title}
 
+p= render 'tag_list', tag_list: @work_experience.tag_list
+
 table.table.table-hover
     tbody
         tr
