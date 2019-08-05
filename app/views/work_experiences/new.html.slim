@@ -9,6 +9,10 @@ h1 記事の新規投稿
     .form-group
         = f.label :title
         = f.text_field :title, class: 'form-control', id: 'work_experience_title'
+    p.attention タグはカンマ(,)区切りで入力してください
+    .form-group 
+        = f.label :タグ
+        = f.text_field :tag_list, value: @work_experience.tag_list.join(','), class: 'form-control', id: "work_experience_tag"
     .form-group
         = f.label :body
         = f.text_area :body, class: 'form-control', id: 'work_experience_body'
