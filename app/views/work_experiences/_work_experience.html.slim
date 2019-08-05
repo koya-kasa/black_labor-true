@@ -1,2 +1,5 @@
 tr
     td= link_to work_experience.title, work_experience
+    - if current_user.present?
+        td
+            = link_to work_experience.user.name, user_path(work_experience.user.id)
