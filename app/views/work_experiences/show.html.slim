@@ -1,7 +1,7 @@
 h1 #{@work_experience.title}
 
 - if current_user.present?
-    p= link_to @work_experience.post_user.name, user_path(@work_experience.post_user.id)
+    p= link_to @work_experience.user.name, user_path(@work_experience.user.id)
 
 table.table.table-hover
     tbody
