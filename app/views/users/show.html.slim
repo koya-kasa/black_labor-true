@@ -25,5 +25,11 @@ h3 投稿した記事
     p 投稿した記事はありません
 
 table.table.table-hover
+    thead.thead-default
+        tr
+            th= '記事のタイトル'
+            th
+            th
+
     tbody
         = render partial: 'work_experience', collection: @user.work_experiences

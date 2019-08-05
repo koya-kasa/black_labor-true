@@ -1,7 +1,13 @@
 h1 #{@work_experience.title}
 
+- if current_user.present?
+    h5 投稿したユーザーの名前
+    p= link_to @work_experience.user.name, user_path(@work_experience.user.id)
+
+h5 この記事のタグ
 p= render 'tag_list', tag_list: @work_experience.tag_list
 
+h5 本文
 table.table.table-hover
     tbody
         tr
