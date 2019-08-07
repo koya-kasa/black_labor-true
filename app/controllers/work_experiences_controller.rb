@@ -1,10 +1,14 @@
 class WorkExperiencesController < ApplicationController
   skip_before_action :login_required, only: [:index, :show]
-  before_action :forbid_work_experience_user, only: [:edit, :update, :destroy]
   before_action :set_work_experience, only: [:edit, :update, :destroy]
+  before_action :forbid_work_experience_user, only: [:edit, :update, :destroy]
   
   def index
-    @work_experiences = WorkExperience.all
+    if params[:tag_name]
+      @work_experiences = WorkExperience.tagged_with("#{params[:tag_name]}")
+    else
+      @work_experiences = WorkExperience.all
+    end
   end
 
   def show
@@ -44,7 +48,7 @@ class WorkExperiencesController < ApplicationController
   private
   
   def we_params
-    params.require(:work_experience).permit(:title, :body)
+    params.require(:work_experience).permit(:title, :body, :tag_list)
   end
 
   def set_work_experience
@@ -52,6 +56,6 @@ class WorkExperiencesController < ApplicationController
   end
   
   def forbid_work_experience_user
-    redirect_to user_url(@current_user), notice: '権限がありません' unless @current_user.id == params[:id].to_i
+    redirect_to user_url(@current_user), notice: '権限がありません' unless @current_user.id == @work_experience.user_id
   end
 end

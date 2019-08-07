@@ -1,5 +1,6 @@
 tr
     td= link_to work_experience.title, work_experience
+    td= render 'tag_list', tag_list: work_experience.tag_list
     - if current_user.present?
         td
             = link_to work_experience.user.name, user_path(work_experience.user.id)
