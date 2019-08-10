@@ -5,9 +5,17 @@ class WorkExperiencesController < ApplicationController
   
   def index
     if params[:tag_name]
+      @q = WorkExperience.ransack(params[:q])
       @work_experiences = WorkExperience.tagged_with("#{params[:tag_name]}")
     else
-      @work_experiences = WorkExperience.all
+      if params[:q] != nil
+        params[:q]['title_or_tags_name_or_user_name_cont_any'] = params[:q]['title_or_tags_name_or_user_name_cont_any'].split(/[\p{blank}\s]+/)
+        @q = WorkExperience.ransack(params[:q])
+        @work_experiences = @q.result(distinct: true).includes(:user)
+      else
+        @q = WorkExperience.ransack(params[:q])
+        @work_experiences = @q.result(distinct: true).includes(:user)
+      end
     end
   end
 
