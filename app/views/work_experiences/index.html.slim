@@ -1,11 +1,21 @@
 h1 記事一覧
 
+= search_form_for @q, url: work_experiences_path, class: 'mb-5' do |f|
+    .form-group.row
+        = f.label :title_or_tags_name_or_user_name_cont_any, 'キーワード', class: 'col-sm-2 col-form-label'
+        .col-sm-10
+            = f.search_field :title_or_tags_name_or_user_name_cont_any, class: 'form-control'
+    .form-group
+        = f.submit '検索', class: 'btn btn-outline-primary'
+
+
 table.table.table-hover
     thead.thead-default
         tr
             th= '記事のタイトル'
             th= '記事のタグ'
-            th= '投稿したユーザーの名前'
+            - if current_user.present?
+                th= '投稿したユーザーの名前'
 
     tbody
         = render partial: 'work_experience', collection: @work_experiences
