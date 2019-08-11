@@ -12,6 +12,6 @@ class WorkExperience < ApplicationRecord
     end
 
     def self.ransackable_associations(auth_object = nil)
-        %w[user tags taggings base_tags tag_taggings]
+        %w[user tags taggings]
     end
 end
