@@ -4,3 +4,6 @@ tr
     - if current_user.present?
         td
             = link_to work_experience.user.name, user_path(work_experience.user.id)
+    - else
+        td 
+            = work_experience.user.name
