@@ -48,7 +48,7 @@ class WorkExperiencesController < ApplicationController
   
   def tag_index
     @q = WorkExperience.ransack(params[:q])
-    @work_experiences = WorkExperience.tagged_with("#{params[:tag_name]}")
+    @work_experiences = WorkExperience.tagged_with("#{params[:tag_name]}").page(params[:page])
   end
   
   private
@@ -63,7 +63,7 @@ class WorkExperiencesController < ApplicationController
   
   def set_ransack_work_experience
     @q = WorkExperience.ransack(params[:q])
-    @work_experiences = @q.result(distinct: true).includes(:user)
+    @work_experiences = @q.result(distinct: true).includes(:user).page(params[:page])
   end
   
   def forbid_work_experience_user
