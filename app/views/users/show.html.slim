@@ -11,7 +11,7 @@ table.table.table-hover
 
 - if @current_user.id == @user.id
     = link_to '編集', edit_user_path, class: 'btn btn-primary mr-3 mb-5'
-- if @current_user.admin?
+- if @current_user.admin? && @current_user.id == params[:id].to_i
     = link_to '削除', @user, method: :delete, data: {confirm: "タスク「#{@user.name}」を削除します。よろしいですか？"}, class: 'btn btn-danger mb-5'
 
 - if @current_user.id == @user.id

@@ -1,13 +1,14 @@
 class WorkExperiencesController < ApplicationController
-  skip_before_action :login_required, only: [:index, :show]
+  skip_before_action :login_required, only: [:index, :show, :tag_index]
   before_action :set_work_experience, only: [:edit, :update, :destroy]
   before_action :forbid_work_experience_user, only: [:edit, :update, :destroy]
   
   def index
-    if params[:tag_name]
-      @work_experiences = WorkExperience.tagged_with("#{params[:tag_name]}")
+    if params[:q].present?
+      params[:q]['title_or_tags_name_or_user_name_cont_any'] = params[:q]['title_or_tags_name_or_user_name_cont_any'].split(/[\p{blank}\s]+/)
+      set_ransack_work_experience
     else
-      @work_experiences = WorkExperience.all
+      set_ransack_work_experience
     end
   end
 
@@ -45,6 +46,11 @@ class WorkExperiencesController < ApplicationController
     redirect_to user_path(@current_user), notice: "記事「#{@work_experience.title}」を削除しました。"
   end
   
+  def tag_index
+    @q = WorkExperience.ransack(params[:q])
+    @work_experiences = WorkExperience.tagged_with("#{params[:tag_name]}")
+  end
+  
   private
   
   def we_params
@@ -53,6 +59,11 @@ class WorkExperiencesController < ApplicationController
 
   def set_work_experience
     @work_experience = current_user.work_experiences.find(params[:id])
+  end
+  
+  def set_ransack_work_experience
+    @q = WorkExperience.ransack(params[:q])
+    @work_experiences = @q.result(distinct: true).includes(:user)
   end
   
   def forbid_work_experience_user

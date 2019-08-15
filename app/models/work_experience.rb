@@ -6,4 +6,12 @@ class WorkExperience < ApplicationRecord
     belongs_to :user
     
     acts_as_taggable
+    
+    def self.ransackable_attributes(auth_object = nil)
+        %w[title]
+    end
+
+    def self.ransackable_associations(auth_object = nil)
+        %w[user tags taggings]
+    end
 end
