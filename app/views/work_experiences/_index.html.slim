@@ -8,6 +8,9 @@ h1 記事一覧
     .form-group
         = f.submit '検索', class: 'btn btn-outline-primary'
 
+.md-3
+    = paginate @work_experiences
+    = page_entries_info @work_experiences
 
 table.table.table-hover
     thead.thead-default

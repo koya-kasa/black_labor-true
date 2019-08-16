@@ -24,6 +24,10 @@ h3 投稿した記事
 - if @user.work_experiences.count == 0
     p 投稿した記事はありません
 
+.md-3
+    = paginate @work_experiences
+    = page_entries_info @work_experiences
+
 table.table.table-hover
     thead.thead-default
         tr
