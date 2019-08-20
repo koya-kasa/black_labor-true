@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resources :work_experiences do
+    resources :work_experience_comments, only: [:create]
     collection do
       get 'tag_index'
     end
