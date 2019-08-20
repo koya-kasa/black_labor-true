@@ -27,6 +27,8 @@ ja:
         user_id: ユーザーのid
         created_at: 登録日時
         updated_at: 更新日時
+      work_experience_comment:
+        body: 感想の本文
   date:
     abbr_day_names:
     - 日
