@@ -14,7 +14,7 @@ class WorkExperiencesController < ApplicationController
 
   def show
     @work_experience = WorkExperience.find(params[:id])
-    @work_experience_comments = @work_experience.work_experience_comments.all
+    @work_experience_comments = @work_experience.work_experience_comments
     @work_experience_comment = WorkExperienceComment.new
   end
 
