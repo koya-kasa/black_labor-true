@@ -1,14 +1,36 @@
 h1 #{@work_experience.title}
 
+- if @work_experience_comment.errors.present?
+    ul#error_explanation
+        - @work_experience_comment.errors.full_messages.each do |message|
+            li= message
+
 - if current_user.present?
     h5 投稿したユーザーの名前
     p= link_to @work_experience.user.name, user_path(@work_experience.user.id)
 
 h5 この記事のタグ
-p= render 'tag_list', tag_list: @work_experience.tag_list
+p= render 'work_experiences/tag_list', tag_list: @work_experience.tag_list
 
 h5 本文
 table.table.table-hover
     tbody
         tr
-            td= @work_experience.body
+            td= simple_format(@work_experience.body)
+
+h5 感想
+table.table.table-hover
+    thead.thead-default
+        tr
+            th= '投稿したユーザーの名前'
+            th= '本文'
+    tbody
+        = render partial: 'work_experiences/comment', collection: @work_experience_comments
+        
+h5 感想の投稿
+
+= form_with model: [@work_experience, @work_experience_comment], local: true do |f|
+    .form-group
+        = f.label :body
+        = f.text_area :body, class: 'form-control', id: 'work_experience_comment_body', size: '10x5'
+    = f.submit '投稿', class: 'btn btn-primary'

@@ -11,4 +11,5 @@ class User < ApplicationRecord
     validates :password, length: { in: 4..15 }, presence: true
     
     has_many :work_experiences
+    has_many :work_experience_comments
 end

@@ -11,7 +11,7 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
-    @work_experiences = @user.work_experiences.page(params[:page]).per(10)
+    @work_experiences = @user.work_experiences.page(params[:page]).per(5)
   end
   
   def new

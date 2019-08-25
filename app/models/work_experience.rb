@@ -4,6 +4,7 @@ class WorkExperience < ApplicationRecord
     validates :tag_list, presence: true, length: { in: 1..30 }
     
     belongs_to :user
+    has_many :work_experience_comments, dependent: :destroy
     
     acts_as_taggable
     

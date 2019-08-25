@@ -7,7 +7,7 @@ table.table.table-hover
             td= @user.name
         tr
             th= User.human_attribute_name(:profile)
-            td= @user.profile
+            td= simple_format(@user.profile)
 
 - if @current_user.id == @user.id
     = link_to '編集', edit_user_path, class: 'btn btn-primary mr-3 mb-5'
@@ -37,4 +37,4 @@ table.table.table-hover
             th
 
     tbody
-        = render partial: 'work_experience', collection: @user.work_experiences
+        = render partial: 'work_experience', collection: @work_experiences
