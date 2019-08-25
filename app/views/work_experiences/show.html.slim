@@ -19,6 +19,11 @@ table.table.table-hover
             td= simple_format(@work_experience.body)
 
 h5 感想
+- if @current_user.work_experiences.count != 0
+    .md-3
+        = paginate @work_experience_comments
+        = page_entries_info @work_experience_comments
+
 table.table.table-hover
     thead.thead-default
         tr
@@ -26,7 +31,10 @@ table.table.table-hover
             th= '本文'
     tbody
         = render partial: 'work_experiences/comment', collection: @work_experience_comments
-        
+
+- if @current_user.work_experiences.count == 0
+    h3.attention これ以上の感想を見るためには記事を投稿してください
+
 h5 感想の投稿
 
 = form_with model: [@work_experience, @work_experience_comment], local: true do |f|
