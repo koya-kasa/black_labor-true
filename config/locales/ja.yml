@@ -10,6 +10,7 @@ ja:
     models: 
       user: ユーザー
       work_experience: 記事
+      work_experience_comment: 感想
     attributes: 
       user:
         name: 名前
