@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root to: 'work_experiences#index'
   resources :work_experiences do
     resources :work_experience_comments, only: [:create]
     collection do
