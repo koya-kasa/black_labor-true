@@ -14,7 +14,11 @@ class WorkExperiencesController < ApplicationController
 
   def show
     @work_experience = WorkExperience.find(params[:id])
-    @work_experience_comments = @work_experience.work_experience_comments
+    if current_user.work_experiences.count != 0
+      @work_experience_comments = @work_experience.work_experience_comments.page(params[:page]).per(5)
+    else
+      @work_experience_comments = @work_experience.work_experience_comments.limit(5)
+    end
     @work_experience_comment = WorkExperienceComment.new
   end
 
