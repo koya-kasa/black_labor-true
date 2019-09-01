@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   root to: 'work_experiences#index'
   resources :work_experiences do
+    resources :likes, only: [:create, :destroy]
     resources :work_experience_comments, only: [:create]
     collection do
       get 'tag_index'
