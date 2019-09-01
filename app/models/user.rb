@@ -12,4 +12,5 @@ class User < ApplicationRecord
     
     has_many :work_experiences
     has_many :work_experience_comments
+    has_many :likes
 end
