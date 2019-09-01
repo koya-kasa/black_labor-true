@@ -1,0 +1,4 @@
+tr
+    td= link_to like.work_experience.title, work_experience_url(like.work_experience)
+    td= link_to like.work_experience.user.name, user_url(like.work_experience.user)
+    td= render 'work_experiences/tag_list', tag_list: like.work_experience.tag_list
