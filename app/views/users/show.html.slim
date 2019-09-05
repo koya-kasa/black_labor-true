@@ -41,7 +41,7 @@ table.table.table-hover
 
 h3 お気に入り登録した記事
 
-- if @user.likes.count == 0
+- if @user.likes.blank?
     p お気に入り登録した記事はありません
 
 .md-3
