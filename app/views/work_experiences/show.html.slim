@@ -18,7 +18,7 @@ table.table.table-hover
         tr
             td= simple_format(@work_experience.body)
 
-- if current_user && current_user.likes.find_by(work_experience_id: @work_experience.id).blank?
+- if check_current_user_likes(@work_experience.id).blank?
     = link_to 'お気に入り', work_experience_likes_path(@work_experience.id), method: :post, class: 'btn btn-primary'
 
 h5 感想
