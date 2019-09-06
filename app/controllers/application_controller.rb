@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
     helper_method :current_user
+    helper_method :check_current_user_likes_blank?
     before_action :login_required
     
     private
@@ -14,5 +15,9 @@ class ApplicationController < ActionController::Base
     
     def already_login
         redirect_to user_path(@current_user), notice: 'ログイン済みです' if current_user
+    end
+    
+    def check_current_user_likes_blank?(we_id)
+        current_user && current_user.likes.find_by(work_experience_id: we_id).blank?
     end
 end
