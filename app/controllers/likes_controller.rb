@@ -1,6 +1,6 @@
 class LikesController < ApplicationController
     def create
-        return redirect_to work_experiences_path, notice: 'その記事は既にお気に入り登録されています。' unless check_current_user_likes_blank?(params[:work_experience_id])
+        return redirect_to work_experiences_path, notice: 'その記事は既にお気に入り登録されています。' unless @current_user&.check_current_user_likes_blank?(params[:work_experience_id], @current_user.id)
         
         @like = current_user.likes.new(work_experience_id: params[:work_experience_id])
         
