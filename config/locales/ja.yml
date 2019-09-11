@@ -11,6 +11,7 @@ ja:
       user: ユーザー
       work_experience: 記事
       work_experience_comment: 感想
+      like: お気に入り
     attributes: 
       user:
         name: 名前

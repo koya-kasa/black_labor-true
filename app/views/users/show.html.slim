@@ -38,3 +38,22 @@ table.table.table-hover
 
     tbody
         = render partial: 'work_experience', collection: @work_experiences
+
+h3 お気に入り登録した記事
+
+- if @user.likes.blank?
+    p お気に入り登録した記事はありません
+
+.md-3
+    = paginate @likes
+    = page_entries_info @likes
+
+table.table.table-hover
+    thead.thead-default
+        tr
+            th= '記事のタイトル'
+            th= '記事を投稿したユーザー'
+            th= '記事のタグ'
+
+    tbody
+        = render partial: 'like', collection: @likes

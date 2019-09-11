@@ -5,6 +5,7 @@ class WorkExperience < ApplicationRecord
     
     belongs_to :user
     has_many :work_experience_comments, dependent: :destroy
+    has_many :likes, dependent: :destroy
     
     acts_as_taggable
     

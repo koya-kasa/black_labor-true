@@ -12,4 +12,10 @@ class User < ApplicationRecord
     
     has_many :work_experiences
     has_many :work_experience_comments
+    has_many :likes
+    
+    
+    def check_current_user_likes_blank?(we_id)
+        self.likes.find_by(work_experience_id: we_id).blank?
+    end
 end
