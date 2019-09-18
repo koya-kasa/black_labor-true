@@ -15,9 +15,9 @@ class WorkExperiencesController < ApplicationController
   def show
     @work_experience = WorkExperience.find(params[:id])
     if current_user&.work_experiences.present?
-      @work_experience_comments = @work_experience.work_experience_comments.page(params[:page]).per(5)
+      @work_experience_comments = @work_experience.work_experience_comments.page(params[:page]).per(5).order(created_at: :desc)
     else
-      @work_experience_comments = @work_experience.work_experience_comments.limit(5)
+      @work_experience_comments = @work_experience.work_experience_comments.limit(5).order(created_at: :desc)
     end
     @work_experience_comment = WorkExperienceComment.new
   end
@@ -69,7 +69,7 @@ class WorkExperiencesController < ApplicationController
   
   def set_ransack_work_experience
     @q = WorkExperience.ransack(params[:q])
-    @work_experiences = @q.result(distinct: true).includes(:user).page(params[:page])
+    @work_experiences = @q.result(distinct: true).includes(:user).page(params[:page]).order(updated_at: :desc)
   end
   
   def forbid_work_experience_user
