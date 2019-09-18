@@ -6,8 +6,8 @@ class WorkExperience < ApplicationRecord
     belongs_to :user
     has_many :work_experience_comments, dependent: :destroy
     has_many :likes, dependent: :destroy
-    has_many :work_experience_looked_histories
-    
+    has_many :work_experience_looked_histories, dependent: :destroy
+
     acts_as_taggable
     
     def self.ransackable_attributes(auth_object = nil)
