@@ -11,8 +11,8 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
-    @work_experiences = @user.work_experiences.page(params[:page]).per(5)
-    @likes = @user.likes.page(params[:page]).per(5)
+    @work_experiences = @user.work_experiences.page(params[:page]).per(5).order(created_at: :desc)
+    @likes = @user.likes.page(params[:page]).per(5).order(created_at: :desc)
   end
   
   def new
