@@ -18,4 +18,16 @@ class User < ApplicationRecord
     def check_current_user_likes_blank?(we_id)
         self.likes.find_by(work_experience_id: we_id).blank?
     end
+    
+    def looked_history_create(work_experience)
+        old_history = self.work_experience_looked_histories.find_by(work_experience_id: work_experience.id)
+        old_history.destroy if old_history.present?
+    
+        new_history = self.work_experience_looked_histories.new(work_experience_id: work_experience.id)
+        new_history.save
+    
+        histories_limit = 20
+        histories = self.work_experience_looked_histories
+        histories[0].destroy if histories.count > histories_limit
+    end
 end
