@@ -14,7 +14,7 @@ class WorkExperiencesController < ApplicationController
 
   def show
     @work_experience = WorkExperience.find(params[:id])
-    looked_history_create(@work_experience)
+    current_user.looked_history_create(@work_experience)
     if current_user&.work_experiences.present?
       @work_experience_comments = @work_experience.work_experience_comments.page(params[:page]).per(5)
     else
@@ -66,21 +66,6 @@ class WorkExperiencesController < ApplicationController
 
   def set_work_experience
     @work_experience = current_user.work_experiences.find(params[:id])
-  end
-
-  def looked_history_create(work_experience)
-    old_history = current_user.work_experience_looked_histories.find_by(work_experience_id: work_experience.id)
-    if old_history.present?
-      old_history.destroy
-    end
-    
-    new_history = current_user.work_experience_looked_histories.new(work_experience_id: work_experience.id)
-    new_history.save
-    
-    histories = current_user.work_experience_looked_histories
-    if histories.count > 20
-      histories[0].destroy
-    end
   end
 
   def set_ransack_work_experience
