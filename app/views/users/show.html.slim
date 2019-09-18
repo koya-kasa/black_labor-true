@@ -57,3 +57,22 @@ table.table.table-hover
 
     tbody
         = render partial: 'like', collection: @likes
+
+h3 閲覧履歴
+
+- if @user.likes.blank?
+    p まだ記事を読んでいません
+
+.md-3
+    = paginate @histories
+    = page_entries_info @histories
+
+table.table.table-hover
+    thead.thead-default
+        tr
+            th= '記事のタイトル'
+            th= '記事を投稿したユーザー'
+            th= '記事のタグ'
+
+    tbody
+        = render partial: 'history', collection: @histories
