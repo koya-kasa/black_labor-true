@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+    HISTORIES_LIMIT = 20.freeze  #looked_history_createメソッドで使う定数
+    
     has_secure_password
     
     def self.ransackable_attributes(auth_object = nil)
@@ -20,14 +22,15 @@ class User < ApplicationRecord
     end
     
     def looked_history_create(work_experience)
-        old_history = self.work_experience_looked_histories.find_by(work_experience_id: work_experience.id)
+        old_history = work_experience_looked_histories.find_by(work_experience_id: work_experience.id)
         old_history.destroy if old_history.present?
     
-        new_history = self.work_experience_looked_histories.new(work_experience_id: work_experience.id)
+        new_history = work_experience_looked_histories.new(work_experience_id: work_experience.id)
         new_history.save
     
-        histories_limit = 20
-        histories = self.work_experience_looked_histories
-        histories[0].destroy if histories.count > histories_limit
+        
+
+        histories = work_experience_looked_histories
+        histories[0].destroy if histories.count > HISTORIES_LIMIT
     end
 end
