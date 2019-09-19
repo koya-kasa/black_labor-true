@@ -15,7 +15,7 @@ class User < ApplicationRecord
     has_many :likes
     
     
-    def check_current_user_likes_blank?(we_id)
-        self.likes.find_by(work_experience_id: we_id).blank?
+    def liked?(work_experience_id)
+        likes.find_by(work_experience_id: work_experience_id).blank?
     end
 end
