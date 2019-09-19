@@ -12,7 +12,7 @@ table.table.table-hover
 - if @current_user.id == @user.id
     = link_to '編集', edit_user_path, class: 'btn btn-primary mr-3 mb-5'
 - if @current_user.admin? && @current_user.id == params[:id].to_i
-    = link_to '削除', @user, method: :delete, data: {confirm: "タスク「#{@user.name}」を削除します。よろしいですか？"}, class: 'btn btn-danger mb-5'
+    = link_to '削除', @user, method: :delete, data: {confirm: "「#{@user.name}」を削除します。よろしいですか？"}, class: 'btn btn-danger mb-5'
 
 - if @current_user.id == @user.id
     h3 新規投稿
@@ -54,6 +54,7 @@ table.table.table-hover
             th= '記事のタイトル'
             th= '記事を投稿したユーザー'
             th= '記事のタグ'
+            th
 
     tbody
         = render partial: 'like', collection: @likes
