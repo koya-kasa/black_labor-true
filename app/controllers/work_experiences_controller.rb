@@ -15,9 +15,9 @@ class WorkExperiencesController < ApplicationController
   def show
     @work_experience = WorkExperience.find(params[:id])
     if current_user&.work_experiences.present?
-      @work_experience_comments = @work_experience.work_experience_comments.page(params[:page]).per(5).paging
+      @work_experience_comments = @work_experience.work_experience_comments.page(params[:page]).per(5).created_at_paging
     else
-      @work_experience_comments = @work_experience.work_experience_comments.limit(5).paging
+      @work_experience_comments = @work_experience.work_experience_comments.limit(5).created_at_paging
     end
     @work_experience_comment = WorkExperienceComment.new
   end
