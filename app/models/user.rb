@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-    HISTORIES_LIMIT = 20.freeze  #looked_history_createメソッドで使う定数
+    HISTORIES_LIMIT = 20
     
     has_secure_password
     
