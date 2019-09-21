@@ -65,7 +65,7 @@ class WorkExperiencesController < ApplicationController
   end
 
   def set_work_experience
-    @work_experience = current_user.work_experiences.find(params[:id])
+    @work_experience = current_user.work_experiences.find_by(id: params[:id])
   end
 
   def set_ransack_work_experience
@@ -74,6 +74,6 @@ class WorkExperiencesController < ApplicationController
   end
 
   def forbid_work_experience_user
-    redirect_to user_url(@current_user), notice: '権限がありません' unless @current_user.id == @work_experience.user_id
+    redirect_to user_url(@current_user), notice: '権限がありません' unless @work_experience && @current_user.id == @work_experience.user_id
   end
 end
