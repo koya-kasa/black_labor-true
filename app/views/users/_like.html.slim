@@ -2,4 +2,5 @@ tr
     td= link_to like.work_experience.title, work_experience_url(like.work_experience)
     td= link_to like.work_experience.user.name, user_url(like.work_experience.user)
     td= render 'work_experiences/tag_list', tag_list: like.work_experience.tag_list
-    td= link_to '削除', work_experience_like_path(work_experience_id: like.work_experience.id), method: :delete, data: {confirm: "お気に入り「#{like.work_experience.title}」を削除します。よろしいですか？"}, class: 'btn btn-danger'
+    - if @current_user.id == like.user_id
+        td= link_to '削除', work_experience_like_path(work_experience_id: like.work_experience.id), method: :delete, data: {confirm: "お気に入り「#{like.work_experience.title}」を削除します。よろしいですか？"}, class: 'btn btn-danger'
