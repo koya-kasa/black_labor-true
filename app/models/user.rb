@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+    HISTORIES_LIMIT = 20
+    
     has_secure_password
     
     def self.ransackable_attributes(auth_object = nil)
@@ -13,9 +15,22 @@ class User < ApplicationRecord
     has_many :work_experiences
     has_many :work_experience_comments
     has_many :likes
-    
+    has_many :work_experience_looked_histories
     
     def liked?(work_experience_id)
         likes.find_by(work_experience_id: work_experience_id).blank?
+    end
+    
+    def looked_history_create(work_experience)
+        old_history = work_experience_looked_histories.find_by(work_experience_id: work_experience.id)
+        old_history.destroy if old_history.present?
+    
+        new_history = work_experience_looked_histories.new(work_experience_id: work_experience.id)
+        new_history.save
+    
+        
+
+        histories = work_experience_looked_histories
+        histories[0].destroy if histories.count > HISTORIES_LIMIT
     end
 end

@@ -14,6 +14,7 @@ class WorkExperiencesController < ApplicationController
 
   def show
     @work_experience = WorkExperience.find(params[:id])
+    current_user.looked_history_create(@work_experience)
     if current_user&.work_experiences.present?
       @work_experience_comments = @work_experience.work_experience_comments.page(params[:page]).per(5).created_at_paging
     else
@@ -66,12 +67,12 @@ class WorkExperiencesController < ApplicationController
   def set_work_experience
     @work_experience = current_user.work_experiences.find(params[:id])
   end
-  
+
   def set_ransack_work_experience
     @q = WorkExperience.ransack(params[:q])
     @work_experiences = @q.result(distinct: true).includes(:user).page(params[:page]).updated_at_paging
   end
-  
+
   def forbid_work_experience_user
     redirect_to user_url(@current_user), notice: '権限がありません' unless @current_user.id == @work_experience.user_id
   end
