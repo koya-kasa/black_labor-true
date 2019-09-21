@@ -33,8 +33,9 @@ table.table.table-hover
         tr
             th= '記事のタイトル'
             th= '記事のタグ'
-            th
-            th
+            - if @current_user.id == @user.id
+                th
+                th
 
     tbody
         = render partial: 'work_experience', collection: @work_experiences
@@ -54,7 +55,8 @@ table.table.table-hover
             th= '記事のタイトル'
             th= '記事を投稿したユーザー'
             th= '記事のタグ'
-            th
+            - if @current_user.id == @user.id
+                th
 
     tbody
         = render partial: 'like', collection: @likes
