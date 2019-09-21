@@ -1,0 +1,2 @@
+module WorkExperienceLookedHistoriesHelper
+end
