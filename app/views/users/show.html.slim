@@ -74,6 +74,8 @@ table.table.table-hover
             th= '記事のタイトル'
             th= '記事を投稿したユーザー'
             th= '記事のタグ'
+            - if @current_user.id == @user.id
+                th
 
     tbody
         = render partial: 'history', collection: @histories
