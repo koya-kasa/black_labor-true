@@ -10,6 +10,9 @@ class WorkExperience < ApplicationRecord
 
     acts_as_taggable
     
+    scope :created_at_paging, -> { order(created_at: :desc) }
+    scope :updated_at_paging, -> { order(updated_at: :desc) }
+    
     def self.ransackable_attributes(auth_object = nil)
         %w[title]
     end
