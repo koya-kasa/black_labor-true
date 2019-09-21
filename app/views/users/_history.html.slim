@@ -2,3 +2,5 @@ tr
     td= link_to history.work_experience.title, work_experience_url(history.work_experience)
     td= link_to history.work_experience.user.name, user_url(history.work_experience.user)
     td= render 'work_experiences/tag_list', tag_list: history.work_experience.tag_list
+    - if @current_user.id == history.user_id
+        td= link_to '削除', work_experience_work_experience_looked_history_path(work_experience_id: history.work_experience.id), method: :delete, data: {confirm: "「#{history.work_experience.title}」を閲覧履歴から削除します。よろしいですか？"}, class: 'btn btn-warning'
