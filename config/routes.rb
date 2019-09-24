@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :work_experiences do
     resources :likes, only: [:create, :destroy]
     resources :work_experience_comments, only: [:create]
+    resources :work_experience_looked_histories, only: [:destroy]
     collection do
       get 'tag_index'
     end
