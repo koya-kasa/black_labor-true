@@ -13,7 +13,7 @@ class LikesController < ApplicationController
     
     def destroy
         @like = current_user.likes.find_by(work_experience_id: params[:work_experience_id])
-        if @current_user.check_current_user_likes_blank?(@like.work_experience.id)
+        if @current_user.liked?(@like.work_experience.id)
             redirect_to @current_user, notice: "「#{@like.work_experience.title}」はお気に入り登録されていません。"
         else
             @like.destroy
