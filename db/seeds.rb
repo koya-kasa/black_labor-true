@@ -5,3 +5,19 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+Faq.create!(
+  [
+    {
+        faq_kind: '記事の投稿について'
+    },
+    {
+        faq_kind: 'ユーザー登録について'
+    },
+    {
+        faq_kind: 'サイトの使い方'
+    },
+    {
+        faq_kind: 'その他'
+    }
+  ]
+)
