@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'questions/new'
   root to: 'work_experiences#index'
   resources :work_experiences do
     resources :likes, only: [:create, :destroy]
@@ -14,5 +15,6 @@ Rails.application.routes.draw do
   resources :users do
     post :confirm, action: :confirm_new, on: :new
   end
+  resources :questions, only: [:index, :new, :create]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
