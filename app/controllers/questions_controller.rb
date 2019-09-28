@@ -8,10 +8,12 @@ class QuestionsController < ApplicationController
   end
   
   def new
+    @faqs = Faq.all
     @question = Question.new
   end
   
   def create
+    @faqs = Faq.all
     @question = Question.new(question_params)
     
     if @question.save
