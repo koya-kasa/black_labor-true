@@ -11,7 +11,7 @@ h3 質問の回答には時間がかかる場合があります。予めご了�
         = f.text_field :email, class: 'form-control', id: "question_email"
     .form-group
         = f.label :faq_id
-        = f.select :faq_id, [["選択してください", ""], ["記事の投稿について", 1], ["ユーザー登録について", 2], ["サイトの使い方", 3], ["その他", 4]], class: 'form-control', id: "question_faq_id"
+        = f.collection_select :faq_id, @faqs, :id, :faq_kind, class: 'form-control', id: "question_faq_id"
     .form-group
         = f.label :body
         = f.text_area :body, class: 'form-control', id: 'question_body', size: '20x10'
