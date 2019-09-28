@@ -1,0 +1,30 @@
+h1 質問、意見一覧
+
+= search_form_for @q, url: questions_path, class: 'mb-5' do |f|
+    .form-group.row
+        = f.label :email_cont, 'メールアドレス', class: 'col-sm-2 col-form-label'
+        .col-sm-10
+            = f.search_field :email_cont, class: 'form-control'
+    .form-group
+        = f.submit '検索', class: 'btn btn-outline-primary'
+
+.md-3
+    = paginate @questions
+    = page_entries_info @questions
+    
+table.table.table-hover
+    thead.thead-default
+        tr
+            th= Question.human_attribute_name(:id)
+            th= Question.human_attribute_name(:email)
+            th= Question.human_attribute_name(:body)
+            th= Question.human_attribute_name(:created_at)
+            th= Question.human_attribute_name(:updated_at)
+    tbody
+        - @questions.each do |question|
+            tr
+                td = question.id
+                td = question.email
+                td = simple_format(question.body)
+                td = question.created_at
+                td = question.updated_at
